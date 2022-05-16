@@ -14,6 +14,8 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -23,14 +25,14 @@
   <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Salve!">
-<meta property="og:url" content="http://example.com/tags/%E6%99%BA%E8%83%BD%E9%A3%9E%E6%9C%BA/index.html">
+<meta property="og:url" content="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Salve!">
 <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Node2Tree">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/tags/%E6%99%BA%E8%83%BD%E9%A3%9E%E6%9C%BA/">
+<link rel="canonical" href="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
 
 
 <script id="page-configurations">
@@ -43,7 +45,7 @@
   };
 </script>
 
-  <title>标签: 智能飞机 | Salve!</title>
+  <title>标签: 机器学习 | Salve!</title>
   
 
 
@@ -151,7 +153,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h2 class="collection-header">智能飞机
+        <h2 class="collection-header">机器学习
           <small>标签</small>
         </h2>
       </div>
@@ -283,12 +285,22 @@
 
 <div class="copyright">
   
-  &copy; 
+  &copy; 2022-05 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Node2Tree</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">7k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
@@ -343,6 +355,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'qax3tNS1cNg2OsoJv988BxQC-gzGzoHsz',
+      appKey     : 'w2h2QVeaA18SunOTPPi7sq3j',
+      placeholder: "说点什么！",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
