@@ -20,19 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="This is a test blog.this is a test blog.this is a test blog.this is a test blog.this is a test blog.this is a test blog.this is a paragraph.this is the second line. this is another paragraph. It’s rea">
+  <meta name="description" content="为了参加市教委组织的人工智能竞赛，我必须提交一个作品。这个作品可以是机器人、3d模型、程序等等，但要求实现模仿实现人类的某项功能，比如感官上的看听闻尝，思维上的推理、学习等等。正好想尝试一下机器学习，又想起学编程做的第一个项目——飞机大战，于是就有了这个项目。 根据维基百科上的释义，  机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、计算复杂性理论等多门学科。 A compute">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Test">
-<meta property="og:url" content="http://example.com/2022/05/09/Test/index.html">
+<meta property="og:title" content="飞机大战小游戏AI训练 1.介绍">
+<meta property="og:url" content="http://example.com/2022/05/16/%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E5%B0%8F%E6%B8%B8%E6%88%8FAI%E8%AE%AD%E7%BB%83%201.%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Salve!">
-<meta property="og:description" content="This is a test blog.this is a test blog.this is a test blog.this is a test blog.this is a test blog.this is a test blog.this is a paragraph.this is the second line. this is another paragraph. It’s rea">
+<meta property="og:description" content="为了参加市教委组织的人工智能竞赛，我必须提交一个作品。这个作品可以是机器人、3d模型、程序等等，但要求实现模仿实现人类的某项功能，比如感官上的看听闻尝，思维上的推理、学习等等。正好想尝试一下机器学习，又想起学编程做的第一个项目——飞机大战，于是就有了这个项目。 根据维基百科上的释义，  机器学习是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、计算复杂性理论等多门学科。 A compute">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-09T00:05:39.000Z">
-<meta property="article:modified_time" content="2022-05-09T02:32:25.853Z">
+<meta property="article:published_time" content="2022-05-16T00:34:43.566Z">
+<meta property="article:modified_time" content="2022-05-16T06:35:05.027Z">
 <meta property="article:author" content="Node2Tree">
+<meta property="article:tag" content="计算机">
+<meta property="article:tag" content="智能飞机">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/05/09/Test/">
+<link rel="canonical" href="http://example.com/2022/05/16/%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E5%B0%8F%E6%B8%B8%E6%88%8FAI%E8%AE%AD%E7%BB%83%201.%E4%BB%8B%E7%BB%8D/">
 
 
 <script id="page-configurations">
@@ -45,7 +47,7 @@
   };
 </script>
 
-  <title>Test | Salve!</title>
+  <title>飞机大战小游戏AI训练 1.介绍 | Salve!</title>
   
 
 
@@ -151,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/Test/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/16/%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E5%B0%8F%E6%B8%B8%E6%88%8FAI%E8%AE%AD%E7%BB%83%201.%E4%BB%8B%E7%BB%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -164,7 +166,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Test
+          飞机大战小游戏AI训练 1.介绍
         </h1>
 
         <div class="post-meta">
@@ -175,7 +177,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-05-09 08:05:39 / 修改时间：10:32:25" itemprop="dateCreated datePublished" datetime="2022-05-09T08:05:39+08:00">2022-05-09</time>
+              <time title="创建时间：2022-05-16 08:34:43 / 修改时间：14:35:05" itemprop="dateCreated datePublished" datetime="2022-05-16T08:34:43+08:00">2022-05-16</time>
             </span>
 
           
@@ -189,46 +191,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="This-is-a-test-blog"><a href="#This-is-a-test-blog" class="headerlink" title="This is a test blog."></a>This is a test blog.</h1><h2 id="this-is-a-test-blog"><a href="#this-is-a-test-blog" class="headerlink" title="this is a test blog."></a>this is a test blog.</h2><h3 id="this-is-a-test-blog-1"><a href="#this-is-a-test-blog-1" class="headerlink" title="this is a test blog."></a>this is a test blog.</h3><h4 id="this-is-a-test-blog-2"><a href="#this-is-a-test-blog-2" class="headerlink" title="this is a test blog."></a>this is a test blog.</h4><h5 id="this-is-a-test-blog-3"><a href="#this-is-a-test-blog-3" class="headerlink" title="this is a test blog."></a>this is a test blog.</h5><h6 id="this-is-a-test-blog-4"><a href="#this-is-a-test-blog-4" class="headerlink" title="this is a test blog."></a>this is a test blog.</h6><p>this is a paragraph.<br>this is the second line.</p>
-<p>this is <strong>another</strong> <em>paragraph</em>. It’s <strong>really</strong> <em><strong>important</strong></em>.</p>
+        <p>为了参加市教委组织的人工智能竞赛，我必须提交一个作品。这个作品可以是机器人、3d模型、程序等等，但要求实现模仿实现人类的某项功能，比如感官上的看听闻尝，思维上的推理、学习等等。正好想尝试一下机器学习，又想起学编程做的第一个项目——飞机大战，于是就有了这个项目。</p>
+<p>根据维基百科上的释义，</p>
 <blockquote>
-<p>this is a quote.</p>
-<blockquote>
-<ul>
-<li>this is an extra-quote.</li>
-<li>this is an <em><strong>important</strong></em> one.</li>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</a>是一门多领域交叉学科，涉及<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A6%82%E7%8E%87%E8%AE%BA">概率论</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E8%AE%A1%E5%AD%A6">统计学</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%BC%E8%BF%91%E8%AE%BA">逼近论</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E5%87%B8%E5%88%86%E6%9E%90&action=edit&redlink=1">凸分析</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E7%90%86%E8%AE%BA">计算复杂性理论</a>等多门学科。</p>
+<p>A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.</p>
+</blockquote>
+<p>想要深入完整地进行学习，必然离不开分析、概率等等高数知识，然而笔者能力有限，又是第一次写人工智能方向的代码，这篇文章只能粗浅地介绍一下经验，记录一下开发过程，希望能够带来启发，而不进行原理解释。</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h4 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h4><p>​	智能飞机&#x2F;Intelligent Plane</p>
+<h4 id="语言和库"><a href="#语言和库" class="headerlink" title="语言和库"></a>语言和库</h4><p>​	Python 3.10.3 &#x2F; Pygame 2.1.2</p>
+<h4 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h4><p>​	Pycharm v2021.1.2</p>
+<h4 id="期望效果"><a href="#期望效果" class="headerlink" title="期望效果"></a>期望效果</h4><ul>
+<li><h5 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h5><ul>
+<li>出现主窗口，选择训练AI&#x2F;测试AI。</li>
 </ul>
-<blockquote>
-<p>this is an <em>extra-extra-quote</em>.</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p><code>This is some unknown code.</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello World! I&#x27;m a piece of cpp code.&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="There-is-a-list"><a href="#There-is-a-list" class="headerlink" title="There is a list."></a>There is a list.</h3><ol>
-<li><p>First.</p>
 </li>
-<li><p>Second.</p>
-<ol>
-<li><p>Second-First.</p>
-<ol>
-<li><p><em>Second-First-First</em>.</p>
+<li><h5 id="训练AI"><a href="#训练AI" class="headerlink" title="训练AI"></a>训练AI</h5><ul>
+<li>设置训练次数、决策函数、改进策略方向、改进策略步长、正负反馈、每局时长、每次训练的AI数量、快进倍数。</li>
+<li>开始训练，生成多个AI，各AI根据决策函数行动。行动分为前进、左转、右转、发射。</li>
+<li>一局结束，使用得分最高的策略进行改进，再次生成多个AI。</li>
+<li>训练期间可随时点击其中一个飞机取代控制，辅助训练。</li>
+<li>训练结束，导出模型。</li>
+</ul>
 </li>
-<li><blockquote>
-<p>This is a SFS <strong>quote</strong>.</p>
-</blockquote>
+<li><h5 id="测试AI"><a href="#测试AI" class="headerlink" title="测试AI"></a>测试AI</h5><ul>
+<li>设置时长、AI数量，导入模型。</li>
+<li>开始测试，生成多个AI，根据已有模型行动。</li>
+<li>测试期间可随时点击其中一个飞机取代控制，人机对战。</li>
+<li>测试结束，显示分数。</li>
+</ul>
 </li>
-<li><p>There is a <a target="_blank" rel="noopener" href="https://node2tr.ee/" title="my blogs"><strong>link</strong></a>.</p>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>Third.</p>
-</li>
-</ol>
+</ul>
 
     </div>
 
@@ -237,17 +230,21 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" rel="tag"># 计算机</a>
+              <a href="/tags/%E6%99%BA%E8%83%BD%E9%A3%9E%E6%9C%BA/" rel="tag"># 智能飞机</a>
+          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/05/09/%E6%A0%B8%E5%BC%B9%E5%88%B6%E4%BD%9C%E6%8C%87%E5%8D%97/" rel="next" title="核弹设计理论(测试)">
-      核弹设计理论(测试) <i class="fa fa-chevron-right"></i>
+    <a href="/2022/05/09/%E6%A0%B8%E5%BC%B9%E5%88%B6%E4%BD%9C%E6%8C%87%E5%8D%97/" rel="prev" title="核弹设计理论(测试)">
+      <i class="fa fa-chevron-left"></i> 核弹设计理论(测试)
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -306,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#This-is-a-test-blog"><span class="nav-number">1.</span> <span class="nav-text">This is a test blog.</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#this-is-a-test-blog"><span class="nav-number">1.1.</span> <span class="nav-text">this is a test blog.</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-is-a-test-blog-1"><span class="nav-number">1.1.1.</span> <span class="nav-text">this is a test blog.</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this-is-a-test-blog-2"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">this is a test blog.</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#this-is-a-test-blog-3"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">this is a test blog.</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#this-is-a-test-blog-4"><span class="nav-number">1.1.1.1.1.1.</span> <span class="nav-text">this is a test blog.</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#There-is-a-list"><span class="nav-number">1.1.2.</span> <span class="nav-text">There is a list.</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%90%8D%E7%A7%B0"><span class="nav-number">1.1.</span> <span class="nav-text">项目名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E5%92%8C%E5%BA%93"><span class="nav-number">1.2.</span> <span class="nav-text">语言和库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.3.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%9F%E6%9C%9B%E6%95%88%E6%9E%9C"><span class="nav-number">1.4.</span> <span class="nav-text">期望效果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.1.</span> <span class="nav-text">运行程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83AI"><span class="nav-number">1.4.2.</span> <span class="nav-text">训练AI</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95AI"><span class="nav-number">1.4.3.</span> <span class="nav-text">测试AI</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
