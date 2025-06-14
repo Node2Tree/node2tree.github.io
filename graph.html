@@ -4,8 +4,28 @@
   <meta charset="UTF-8">
   <title>哲学家关系图谱 Demo</title>
   <style>
-    html, body { margin: 0; height: 100%; overflow: hidden; font-family: sans-serif; }
-    #container { display: flex; height: 100%; }
+    html, body { margin: 0; height: 100%; overflow: hidden; font-family: Arial, sans-serif; }
+    .header {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+    }
+    .nav-bar {
+      background-color: #333;
+      overflow: hidden;
+    }
+    .nav-bar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    .nav-bar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    #container { display: flex; height: calc(100vh - 120px); }
     .axis svg {
       background: #f0f0f0;
       display: block;
@@ -43,6 +63,21 @@
   </style>
 </head>
 <body>
+  <div class="header">
+    <h1>哈三中哲学社团（网站建设中！）</h1>
+    <span>随机格言：</span>
+    <p class="motto" id="motto"></p>
+  </div>
+
+  <div class="nav-bar">
+    <a href="index.html">首页</a>
+    <a href="about.html">关于我们</a>
+    <a href="library.html">在线文库</a>
+    <a href="events.html">活动日历</a>
+    <a href="graph.html">哲学图谱</a>
+    <a href="contact.html">联系方式</a>
+  </div>
+
 <div id="container">
   <div class="axis">
     <svg id="axis-svg" width="160" height="1000"></svg>
@@ -91,7 +126,10 @@ const data = {
 };
 
 const width = window.innerWidth;
-const height = window.innerHeight;
+const headerHeight = document.querySelector('.header').offsetHeight;
+const navHeight = document.querySelector('.nav-bar').offsetHeight;
+const height = window.innerHeight - headerHeight - navHeight;
+document.getElementById('container').style.height = height + 'px';
 
 const yScale = d3.scaleLinear()
   .domain([-700, 300])
@@ -299,5 +337,6 @@ const zoom = d3.zoom()
 
 d3.select('#container').call(zoom);
 </script>
+<script src="files/js/motto.js"></script>
 </body>
 </html>
