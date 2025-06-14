@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    { "id": "Thales", "label": "泰勒斯 - 水是万物的本原", "year": -585 },
+    { "id": "Anaximander", "label": "阿纳克西曼德 - 无定形 Apeiron", "year": -570 },
+    { "id": "Anaximenes", "label": "阿纳克西美尼 - 气为本原", "year": -550 },
+    { "id": "Heraclitus", "label": "赫拉克利特 - 火与流变，logos", "year": -500 },
+    { "id": "Xenophanes", "label": "色诺芬尼 - 存在转向", "year": -520 },
+    { "id": "Parmenides", "label": "巴门尼德 - 存在是一", "year": -480 },
+    { "id": "Empedocles", "label": "恩培多克勒 - 四根与爱/冲突", "year": -460 },
+    { "id": "Anaxagoras", "label": "阿那克萨戈拉 - 种子与 Nous", "year": -460 },
+    { "id": "Democritus", "label": "德谟克里特 - 原子论", "year": -430 },
+    { "id": "Socrates", "label": "苏格拉底 - 伦理辩证法", "year": -470 },
+    { "id": "Plato", "label": "柏拉图 - 理念论", "year": -428 },
+    { "id": "Aristotle", "label": "亚里士多德 - 实体论", "year": -384 },
+    { "id": "Zeno_of_Citium", "label": "芝诺（斯多葛派） - 物质性与 logos", "year": -300 },
+    { "id": "Epicurus", "label": "伊壁鸠鲁 - 原子偶然性，快乐主义", "year": -310 },
+    { "id": "Pyrrho", "label": "皮浪（怀疑派） - 悬搁判断", "year": -315 },
+    { "id": "Plotinus", "label": "普罗提诺（新柏拉图主义） - 太一流溢说", "year": 240 }
+  ],
+  "links": [
+    { "source": "Thales", "target": "Anaximander", "description": "阿纳克西曼德是泰勒斯的学生" },
+    { "source": "Anaximander", "target": "Anaximenes", "description": "阿纳克西美尼是阿纳克西曼德的学生" },
+    { "source": "Xenophanes", "target": "Parmenides", "description": "巴门尼德继承色诺芬尼的存在论转向" },
+    { "source": "Heraclitus", "target": "Parmenides", "description": "赫拉克利特与巴门尼德思想对立" },
+    { "source": "Parmenides", "target": "Empedocles", "description": "恩培多克勒受巴门尼德影响" },
+    { "source": "Parmenides", "target": "Anaxagoras", "description": "阿那克萨戈拉受巴门尼德影响" },
+    { "source": "Parmenides", "target": "Democritus", "description": "德谟克里特受巴门尼德影响" },
+    { "source": "Socrates", "target": "Plato", "description": "柏拉图是苏格拉底的学生" },
+    { "source": "Plato", "target": "Aristotle", "description": "亚里士多德是柏拉图的学生" },
+    { "source": "Heraclitus", "target": "Zeno_of_Citium", "description": "斯多葛派继承赫拉克利特的 logos" },
+    { "source": "Socrates", "target": "Zeno_of_Citium", "description": "斯多葛派受苏格拉底伦理学影响" },
+    { "source": "Democritus", "target": "Epicurus", "description": "伊壁鸠鲁继承德谟克里特原子论" },
+    { "source": "Zeno_of_Citium", "target": "Pyrrho", "description": "皮浪批判斯多葛派的 logos" },
+    { "source": "Epicurus", "target": "Pyrrho", "description": "皮浪批判伊壁鸠鲁的原子论" },
+    { "source": "Plato", "target": "Plotinus", "description": "普罗提诺继承柏拉图理念论" }
+  ]
+}
