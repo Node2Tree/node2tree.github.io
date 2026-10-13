@@ -170,6 +170,7 @@
       c.on('data',msg=>receive(c,msg));
       c.on('close',()=>{
         if(c!==conn)return;
+        clearTimeout(joinTimer);
         rejectPending('主机连接已关闭');following=false;video.pause();media=null;clearInterval(pingTimer);
         if(stopped)return;
         $('connection').textContent='主机已断开';$('follow').hidden=true;fail('主机已断开。请确认主机保持开机，再重新连接。');
@@ -205,6 +206,11 @@
   function synchronize(){
     if(!viewer||!following||!state||!media||video.readyState<1||video.error)return;
     const target=Math.min(media.duration,P.targetPosition(state,performance.now(),Math.min(rtt/2,2000)));
+    if(state.ended){
+      video.pause();$('follow').hidden=true;status('本场放映已结束');
+      if(Math.abs(video.currentTime-media.duration)>.05){internalSeek=true;video.currentTime=media.duration;}
+      return;
+    }
     if(Math.abs(video.currentTime-target)>1.5){internalSeek=true;video.currentTime=target;}
     if(state.paused){video.pause();status(state.ended?'本场放映已结束':'主机已暂停 · 等待继续');return;}
     if(video.paused){video.play().then(()=>{$('follow').hidden=true;status('正在放映 · 跟随主机');}).catch(()=>{$('follow').hidden=false;status('点击播放即可跟随主机。');});}
