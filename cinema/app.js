@@ -146,7 +146,7 @@
     if(Math.abs(video.currentTime-target)>1.5&&!video.seeking&&!internalSeek&&(!lastCorrection||(video.readyState>=3&&performance.now()-lastCorrection>5000))){internalSeek=true;lastCorrection=performance.now();video.currentTime=target;}
     if(state.ended){video.pause();notice('本场放映已结束');return;}
     if(state.paused){video.pause();notice('等待主机继续');return;}
-    if(video.paused)play();else hideNotice();
+    if(video.paused)play();else if(video.readyState>=3)hideNotice();
   }
   async function connect(){
     clearTimeout(reconnect);
