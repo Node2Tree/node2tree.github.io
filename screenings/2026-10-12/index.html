@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>冷色系放映室</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #0d0d12;
+    color: #eee;
+    font-family: system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  main {
+    width: min(960px, 94vw);
+    text-align: center;
+  }
+  h1 { font-weight: 400; letter-spacing: 5px; }
+  .sub { color: #aaa; margin-bottom: 30px; }
+  .screen { position: relative; background: #000; }
+  video { display: block; width: 100%; }
+  button {
+    background: #e5e0d5;
+    color: #111;
+    border: 0;
+    border-radius: 5px;
+    padding: 12px 28px;
+    cursor: pointer;
+    margin: 18px 0;
+  }
+  #status { color: #aaa; }
+</style>
+</head>
+<body>
+<main>
+  <h1>冷色系放映室</h1>
+  <p><a href="/p2p/" style="color:#b9d8ee">从本地影片创建 P2P 放映室 →</a></p>
+  <p class="sub" id="title"></p>
+  <div class="screen">
+    <video id="video" playsinline
+           preload="metadata"
+           disablepictureinpicture
+           controlslist="nodownload noplaybackrate">
+    </video>
+  </div>
+  <button id="enter">进入放映室</button>
+  <p id="status" role="status" aria-live="polite">等待放映</p>
+  <p class="sub">2026 年 10 月 12 日 22:00 · 北京时间</p>
+  <p><a href="/archive/2026-10-12/" style="color:#aaa">旧站存档</a></p>
+</main>
+
+<script>
+// ===== 管理员只需要修改以下三项 =====
+
+const MOVIE_URL =
+  "https://pub-634772894be64240aae0a2b67145fbbc.r2.dev/Csinibaba1997.mp4";
+
+const MOVIE_TITLE = "今晚的电影";
+
+const START_TIME = "2026-10-12T22:00:00+08:00";
+
+// =================================
+
+const video = document.getElementById("video");
+const button = document.getElementById("enter");
+const status = document.getElementById("status");
+
+document.getElementById("title").textContent =
+  MOVIE_TITLE;
+
+const startMs = Date.parse(START_TIME);
+let clockOffset = 0;
+let entered = false;
+let syncing = false;
+let playPending = false;
+let needsGesture = false;
+
+function offerRetry(message) {
+  needsGesture = true;
+  button.hidden = false;
+  button.textContent = "点击继续播放";
+  status.textContent = message;
+}
+
+function tryPlay() {
+  if (playPending || needsGesture || now() < startMs) return;
+  playPending = true;
+  video.play().then(() => {
+    button.hidden = true;
+    status.textContent = "正在放映 · 按开场时间同步";
+  }).catch(() => {
+    offerRetry("浏览器暂停了播放，请点击继续播放");
+  }).finally(() => { playPending = false; });
+}
+
+function now() {
+  return Date.now() + clockOffset;
+}
+
+// 通过网页服务器响应时间修正本机时钟
+async function syncClock() {
+  try {
+    const before = Date.now();
+    const response = await fetch(
+      location.pathname + "?clock=" + Date.now(),
+      { method: "HEAD", cache: "no-store" }
+    );
+    const after = Date.now();
+    const date = response.headers.get("Date");
+    if (response.ok && date && Number.isFinite(Date.parse(date))) {
+      clockOffset =
+        Date.parse(date) - (before + after) / 2;
+    }
+  } catch (e) {
+    console.warn("校时失败，暂用本机时间", e);
+  }
+}
+
+function targetTime() {
+  return Math.max(0, (now() - startMs) / 1000);
+}
+
+function fixProgress() {
+  if (!entered || syncing || !Number.isFinite(video.duration) || video.duration <= 0 || video.error) return;
+  if (now() < startMs) {
+    video.pause();
+    status.textContent = "影片尚未开场";
+    return;
+  }
+
+  const elapsed = targetTime();
+
+  if (elapsed >= video.duration) {
+    video.pause();
+    status.textContent = "本场放映已结束";
+    return;
+  }
+
+  if (Math.abs(video.currentTime - elapsed) > 1.5) {
+    syncing = true;
+    video.currentTime = elapsed;
+    setTimeout(() => syncing = false, 250);
+  }
+
+  if (video.paused && elapsed < video.duration) {
+    tryPlay();
+  }
+}
+
+async function start() {
+  entered = true;
+  needsGesture = false;
+  button.hidden = true;
+
+  if (now() < startMs) {
+    status.textContent = "影片尚未开场";
+    return;
+  }
+
+  status.textContent = "正在连接放映...";
+  if (!video.src || video.error) {
+    video.src = MOVIE_URL;
+  }
+
+  if (video.readyState < 1) {
+    video.load();
+    tryPlay();
+  } else {
+    fixProgress();
+  }
+}
+
+button.addEventListener("click", start);
+
+video.addEventListener("loadedmetadata", async () => {
+  if (entered && now() >= startMs) {
+    const elapsed = targetTime();
+    if (elapsed >= video.duration) {
+      status.textContent = "本场放映已结束";
+      return;
+    }
+    video.currentTime = elapsed;
+    tryPlay();
+  }
+});
+
+video.addEventListener("seeking", () => {
+  if (!syncing) fixProgress();
+});
+
+video.addEventListener("pause", () => {
+  if (!syncing && entered && now() >= startMs && targetTime() < video.duration && !video.error) {
+    tryPlay();
+  }
+});
+
+video.addEventListener("error", () => {
+  playPending = false;
+  offerRetry("视频加载失败，请检查网络后重试");
+});
+
+// 每 3 秒校准进度
+setInterval(() => {
+  if (!entered) return;
+  if (now() < startMs) {
+    status.textContent = "影片尚未开场";
+    return;
+  }
+  if (!video.src) {
+    start();
+  } else {
+    fixProgress();
+  }
+}, 3000);
+
+// 定期向服务器校时
+syncClock();
+setInterval(syncClock, 60000);
+
+// 返回页面后立即恢复当前时间轴
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) fixProgress();
+});
+</script>
+</body>
+</html>
