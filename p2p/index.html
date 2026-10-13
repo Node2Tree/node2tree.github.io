@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>冷色系放映室 · 本地供片</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/peerjs.min.js"></script>
+  <script defer src="protocol.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<main>
+  <header><div><p class="eyebrow">PRIVATE SCREENING / P2P</p><h1>冷色系放映室</h1><p class="intro" id="intro">选一部本地影片，把放映室分享给朋友。</p></div><span class="badge" id="role">主机</span></header>
+  <section class="setup card" id="setup">
+    <div><h2>从你的电脑开始</h2><p>影片按需直接传给观众，不上传到云盘。放映期间保持此页面打开、电脑联网。</p></div>
+    <label class="file-label" for="file">选择本地影片<input id="file" type="file" accept="video/*,.mp4,.webm,.mov,.m4v"></label>
+    <label class="title-field">影片名称<input id="name" maxlength="160" placeholder="选择影片后可修改片名"></label>
+    <button id="create" disabled>创建放映室</button>
+  </section>
+  <section class="screen" id="screen" aria-label="电影播放器">
+    <div class="screen-heading"><span id="movie-title">等待选择影片</span><span id="position">00:00 / --:--</span></div>
+    <video id="video" controls playsinline preload="metadata" controlslist="nodownload noplaybackrate"></video>
+    <div class="screen-footer"><span id="buffer">尚未载入</span><button id="fullscreen" class="small secondary">全屏</button></div>
+  </section>
+  <div class="toolbar"><p id="status" role="status" aria-live="polite">选择影片后创建房间，再分享链接。</p><button id="host-play" hidden>开始放映</button><button id="follow" hidden>点击播放 · 跟随主机</button><button id="retry" hidden class="secondary">重新连接</button></div>
+  <section class="share card" id="share" hidden>
+    <div class="section-heading"><h2>邀请朋友</h2><span id="audience">0 位观众</span></div>
+    <p>朋友打开链接即可加入。只有获得房间链接的人才能接收影片。</p>
+    <div class="share-row"><input id="room-link" readonly aria-label="观众链接"><button id="copy">复制链接</button></div>
+    <div class="share-actions"><a id="open-viewer" target="_blank" rel="noopener noreferrer">打开观众页面</a><button id="end" class="small secondary">结束房间</button></div>
+  </section>
+  <div class="stats" aria-label="连接信息"><span id="connection">未连接</span><span id="transfer">已传输 0 MB</span><span id="latency">影片保留在主机上</span></div>
+  <details class="card settings" id="settings"><summary>连接设置</summary>
+    <p>默认使用 PeerJS 的公共连接服务。它负责建立连接，不保存影片。某些校园网或移动网络需要 TURN 中继；双方填入可用的中继配置后再连接。</p>
+    <label>连接服务地址<input id="signal" type="url" placeholder="默认 https://0.peerjs.com"></label>
+    <label>TURN 地址<input id="turn" placeholder="turn:你的服务器:3478"></label>
+    <div class="fields"><label>TURN 用户名<input id="turn-user" autocomplete="off"></label><label>TURN 密码<input id="turn-password" type="password" autocomplete="off"></label></div>
+    <p class="note">中继密码只在本页面内存中使用，不保存、不放入房间链接。创建房间或重新连接时应用配置。</p>
+  </details>
+  <footer><a href="/">定时放映室</a><a href="/archive/2026-10-12/">旧站存档</a><span>电脑休眠或主机关闭页面后，供片会停止。</span></footer>
+</main>
+</body>
+</html>
