@@ -4,7 +4,7 @@
   const backend=new URL(location.hostname==='127.0.0.1'?'http://127.0.0.1:8787':KINO_CONFIG.backend);
   let socket=null,selfId='',room=null,activeHost=false,ice=[],file=null,objectURL=null,media=null,session='',state=null;
   let current=null,sequence=0,epoch='',rtt=0,playPending=false,gestureNeeded=false,internalSeek=false,lastCorrection=0;
-  let reconnect=null,joinTimer=null,action=null,stale=0,loadedGeneration=0,kicked=false;
+  let reconnect=null,joinTimer=null,nameTimer=null,action=null,stale=0,loadedGeneration=0,kicked=false;
   const peers=new Map(),pending=new Map();
   const random=()=>Array.from(crypto.getRandomValues(new Uint8Array(16)),x=>x.toString(16).padStart(2,'0')).join('');
   function notice(text,fn=null,label='重试'){$('message').textContent=text;$('overlay').hidden=false;action=fn;$('action').hidden=!fn;$('action').textContent=label;}
@@ -186,7 +186,8 @@
     $('claim').disabled=true;
     $('login').addEventListener('submit',e=>{e.preventDefault();if(socket?.readyState!==WebSocket.OPEN)return;send({type:'claim',password:$('password').value});$('claim').disabled=true;});
     $('file').addEventListener('change',chooseFile);
-    $('name').addEventListener('change',()=>{title($('name').value.trim()||file?.name||'主机入口');publish();});
+    $('name').addEventListener('input',()=>{title($('name').value.trim()||file?.name||'主机入口');clearTimeout(nameTimer);nameTimer=setTimeout(publish,600);});
+    $('name').addEventListener('change',()=>{clearTimeout(nameTimer);title($('name').value.trim()||file?.name||'主机入口');publish();});
     $('host-play').addEventListener('click',()=>{if(activeHost){if(video.paused)video.play().catch(()=>notice('影片无法播放'));else video.pause();}});
     $('stop').addEventListener('click',()=>{resetPeers();video.pause();send({type:'stop'});notice('本场放映已结束');});
   }
