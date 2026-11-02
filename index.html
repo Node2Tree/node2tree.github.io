@@ -35,12 +35,23 @@
     margin: 18px 0;
   }
   #status { color: #aaa; }
+  main { padding: 28px 0; }
+  .info { text-align:left; background:#151b26; border:1px solid #293447; border-radius:12px; padding:12px 22px; margin:20px 0; line-height:1.8; color:#c6d2e3; }
+  .source { font-size:12px; color:#91a0b8; } a { color:#a9c9f2; }
+  .timeline { font-variant-numeric:tabular-nums; color:#b5c6de; }
+  progress { width:100%; height:10px; accent-color:#91b8ec; }
 </style>
 </head>
 <body>
 <main>
   <h1>冷色系放映室</h1>
-  <p class="sub" id="title"></p>
+  <h2 id="title">Buddy (2026)</h2>
+  <section class="info" aria-label="电影信息">
+    <p>2026 · 美国 · 英语 · 恐怖 / 喜剧</p>
+    <p>导演：Casper Kelly<br>主演：Cristin Milioti、Delaney Quinn、Topher Grace<br>Buddy 配音：Keegan-Michael Key</p>
+    <p>一群孩子被困在看似欢乐的儿童电视节目中，必须设法逃离主持人 Buddy 的邪恶掌控。</p>
+    <p class="source">资料：<a href="https://tv.apple.com/us/movie/buddy/umc.cmc.73vxart76v0s9i3ghtmf6m3f4" target="_blank" rel="noopener">Apple TV</a> · <a href="https://www.rottentomatoes.com/m/buddy_2026" target="_blank" rel="noopener">Rotten Tomatoes</a>。片长以当前视频实际时长为准。</p>
+  </section>
   <div class="screen">
     <video id="video" playsinline
            preload="metadata"
@@ -48,6 +59,11 @@
            controlslist="nodownload noplaybackrate">
     </video>
   </div>
+  <section class="timeline" aria-label="实时放映进度">
+    <p id="schedule-progress"></p>
+    <progress id="movie-progress" max="1" value="0" aria-label="当前播放进度"></progress>
+    <p id="playback-progress">等待加载影片时长</p>
+  </section>
   <button id="enter">进入放映室</button>
   <p id="status" role="status" aria-live="polite">等待放映</p>
   <p class="sub">2026 年 11 月 2 日 19:20 · 北京时间</p>
@@ -60,7 +76,7 @@
 const MOVIE_URL =
   "https://pub-634772894be64240aae0a2b67145fbbc.r2.dev/movie.mp4";
 
-const MOVIE_TITLE = "今晚的电影";
+const MOVIE_TITLE = "Buddy (2026)";
 
 const START_TIME = "2026-11-02T19:20:00+08:00";
 
@@ -228,6 +244,36 @@ setInterval(syncClock, 60000);
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) fixProgress();
 });
+
+function formatTime(seconds) {
+  const s = Math.max(0, Math.floor(seconds));
+  return [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60]
+    .map(n => String(n).padStart(2, "0")).join(":");
+}
+function renderProgress() {
+  const remaining = (startMs - now()) / 1000;
+  const duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : null;
+  const elapsed = targetTime();
+  document.getElementById("schedule-progress").textContent = remaining > 0
+    ? "距离开场 " + formatTime(Math.ceil(remaining))
+    : duration && elapsed >= duration ? "本场放映已结束"
+    : "实时放映进度 " + formatTime(duration ? Math.min(elapsed, duration) : elapsed);
+  const current = Math.max(0, video.currentTime || 0);
+  const progress = document.getElementById("movie-progress");
+  progress.max = duration || 1;
+  progress.value = duration ? Math.min(current, duration) : 0;
+  document.getElementById("playback-progress").textContent = duration
+    ? "当前播放 " + formatTime(current) + " / " + formatTime(duration) +
+      " · 剩余 " + formatTime(Math.max(0, duration - current)) +
+      (video.error ? " · 加载失败" : video.seeking ? " · 正在同步" : video.paused ? " · 未播放" : video.readyState < 3 ? " · 缓冲中" : " · 播放中")
+    : "当前播放 " + formatTime(current) + " / 时长加载中";
+}
+video.src = MOVIE_URL;
+video.addEventListener("timeupdate", renderProgress);
+video.addEventListener("loadedmetadata", renderProgress);
+setInterval(renderProgress, 1000);
+renderProgress();
+
 </script>
 </body>
 </html>
